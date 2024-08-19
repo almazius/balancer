@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"balancer/internal/settings/models"
 	"balancer/pkg/consts"
 	"context"
 	"sync"
@@ -16,11 +17,15 @@ type Settings struct {
 }
 
 func NewSettingService() SettingService {
-	return &settingService{}
+	return &settingService{
+		Settings: &Settings{
+			balancerMap: make(map[string][]string),
+		},
+	}
 }
 
-func (s *settingService) GetSetting(ctx context.Context) (*Settings, error) {
-	return s.Settings, nil
+func (s *settingService) GetSetting(ctx context.Context) (*models.ProxySettingsDTO, error) {
+	return &models.ProxySettingsDTO{Proxies: s.Settings.balancerMap}, nil
 }
 
 func (s *settingService) AddProxy(ctx context.Context, inputUrl string, proxyUrl []string) error {

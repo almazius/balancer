@@ -49,11 +49,11 @@ func (srv *SettingServer) DeleteProxyByInputPath() fiber.Handler {
 
 		err = srv.service.DeleteInputURL(c.Context(), proxyInfo.InputPath)
 		if err != nil {
-			slog.Error("failed adding proxy", "error", err)
+			slog.Error("failed delete proxy", "error", err)
 			return err
 		}
 
-		return c.JSON(fiber.Map{"message": "proxy added"})
+		return c.JSON(fiber.Map{"message": "proxy deleted"})
 	}
 }
 
@@ -68,10 +68,10 @@ func (srv *SettingServer) DeleteProxyPath() fiber.Handler {
 
 		err = srv.service.DeleteProxyURL(c.Context(), proxyInfo.InputPath, proxyInfo.ProxyUrl)
 		if err != nil {
-			slog.Error("failed adding proxy", "error", err)
+			slog.Error("failed delete proxy", "error", err)
 			return err
 		}
 
-		return c.JSON(fiber.Map{"message": "proxy added"})
+		return c.JSON(fiber.Map{"message": "proxy deleted"})
 	}
 }

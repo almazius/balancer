@@ -1,11 +1,11 @@
 package models
 
 type ProxyDTO struct {
-	InputPath string
-	ProxyUrls []string
+	InputPath string   `json:"inputPath"`
+	ProxyUrls []string `json:"proxyUrls"`
 }
 
 type DeleteProxyDTO struct {
-	InputPath string
-	ProxyUrl  string
+	InputPath string `json:"inputPath"`
+	ProxyUrl  string `json:"proxyUrl"`
 }
